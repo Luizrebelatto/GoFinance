@@ -1,11 +1,15 @@
 import React from 'react';
 
-import { Container, Text } from './styles';
+import { 
+  Container,
+  Header
+} from './styles';
 
 export function DashBoard(){
   return(
     <Container>
-      <Text>Dashboard</Text>
+      <Header>
+      </Header>
     </Container>
   )
 }
