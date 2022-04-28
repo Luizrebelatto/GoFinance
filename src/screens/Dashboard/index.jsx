@@ -12,7 +12,8 @@ import {
   User,
   UserGreeting,
   UserName,
-  Icon
+  Icon,
+  HighlightCards
 } from './styles';
 
 export function DashBoard(){
@@ -30,9 +31,12 @@ export function DashBoard(){
           <Icon name="power"/>
         </UserWrapper>
       </Header>
-      <HighlightCard type={'up'} title='Entradas' amount='R$ 17.400,00' lastTransaction='Última entrada 13 de abril'/>
-      <HighlightCard type={'down'}title='Saídas' amount='R$ 1.259,00' lastTransaction='Última saída 03 de abril'/>
-      <HighlightCard type={'total'} title='Total' amount='R$ 16.141,00' lastTransaction='01 a 16 de abril'/>
+
+      <HighlightCards>
+        <HighlightCard type={'up'} title='Entradas' amount='R$ 17.400,00' lastTransaction='Última entrada 13 de abril'/>
+        <HighlightCard type={'up'} title='Entradas' amount='R$ 17.400,00' lastTransaction='Última entrada 13 de abril'/>
+        <HighlightCard type={'up'} title='Entradas' amount='R$ 17.400,00' lastTransaction='Última entrada 13 de abril'/>
+      </HighlightCards>
     </Container>
   )
 }
