@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Feather } from '@expo/vector-icons';
 
@@ -7,7 +7,7 @@ interface TypeProps {
 }
 
 export const Container = styled.View<TypeProps>`
-  background-color: ${({ theme }) => theme.colors.shape};
+  background-color: ${({ theme, type }) => type != 'total' ? theme.colors.shape : theme.colors.secondary};
   width: ${RFValue(300)}px;
   border-radius: 5px;
   padding: 19px 23px;
@@ -28,6 +28,18 @@ export const Title = styled.Text<TypeProps>`
 
 export const Icon = styled(Feather)<TypeProps>`
   font-size: ${RFValue(40)}px;
+
+  ${({ type }) => type === 'up' && css`
+    color: ${({ theme }) => theme.colors.sucess};
+  `}
+
+  ${({ type }) => type === 'down' && css`
+    color: ${({ theme }) => theme.colors.attention};
+  `};
+
+  ${({ type }) => type === 'total' && css`
+    color: ${({ theme }) => theme.colors.shape};
+  `}
 `;
 
 export const Footer = styled.View``;

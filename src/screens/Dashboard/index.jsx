@@ -34,9 +34,10 @@ export function DashBoard(){
 
       <HighlightCards>
         <HighlightCard type={'up'} title='Entradas' amount='R$ 17.400,00' lastTransaction='Última entrada 13 de abril'/>
-        <HighlightCard type={'up'} title='Entradas' amount='R$ 17.400,00' lastTransaction='Última entrada 13 de abril'/>
-        <HighlightCard type={'up'} title='Entradas' amount='R$ 17.400,00' lastTransaction='Última entrada 13 de abril'/>
+        <HighlightCard type={'down'} title='Entradas' amount='R$ 17.400,00' lastTransaction='Última entrada 13 de abril'/>
+        <HighlightCard type={'total'} title='Entradas' amount='R$ 17.400,00' lastTransaction='Última entrada 13 de abril'/>
       </HighlightCards>
     </Container>
+    
   )
 }
