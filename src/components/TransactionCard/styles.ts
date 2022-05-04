@@ -5,6 +5,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 export const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.shape};
   border-radius: 5px;
+  margin-bottom: 16px;
   padding: 17px 24px;
 `;
 
@@ -30,7 +31,6 @@ export const Category = styled.View`
   flex-direction: row;
   align-items: center;
 `;
-
 
 export const Icon = styled(Feather)`
   font-size: ${RFValue(20)}px;
