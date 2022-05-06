@@ -6,6 +6,7 @@ import { useFonts, Poppins_400Regular , Poppins_500Medium, Poppins_700Bold } fro
 
 import theme from './src/global/styles/theme';
 import { DashBoard } from './src/screens/Dashboard';
+import { Register } from './src/screens/Register';
 
 
 export default function App() {
@@ -22,7 +23,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <DashBoard/>
+      <Register/>
     </ThemeProvider>
   );
 }
