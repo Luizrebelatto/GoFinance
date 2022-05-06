@@ -20,7 +20,7 @@ import {
 } from './styles';
 
 export interface DataListProps extends TransactionCardProps {
-  id: String;
+  id: string;
 }
 
 export function DashBoard(){
