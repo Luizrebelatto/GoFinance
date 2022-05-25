@@ -8,12 +8,20 @@ import { InputForm } from '../../components/Form/InputForm';
 import { TransactionTypeButton } from '../../components/Form/TransactionTypeButton';
 import { CategorySelectButton } from '../../components/Form/CategorySelectButton';
 import { CategorySelect } from '../CategorySelect';
+
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Container, Header, Title, Form, Fields, TransactionTypes } from './styles';
 
 interface FormData {
   name:string;
   amount: string;
 }
+
+const schema = Yup.object().shape({
+  name: Yup.string().required('Nome é obrigatorio'),
+  amount: Yup.number().typeError('Informe um valor numérico').positive('O valor não pode ser negativo').required('Preço é obrigatório')
+})
 
 export function Register(){
   const [transactionType, setTransactionType] = useState('');
@@ -27,7 +35,10 @@ export function Register(){
   const {
     control,
     handleSubmit,
-  } = useForm();
+    formState: { errors }
+  } = useForm({
+      resolver: yupResolver(schema)
+  });
 
   function handleTransactionTypeSelect(type: 'up' | 'down'){
     setTransactionType(type);
@@ -72,6 +83,7 @@ export function Register(){
               placeholder='Nome'
               autoCapitalize='sentences'
               autoCorrect={false}
+              error={errors.name && errors.name.message}
             />
 
             <InputForm
@@ -79,6 +91,7 @@ export function Register(){
               control={control} 
               placeholder='Preço'
               keyboardType='numeric'
+              error={errors.amount && errors.amount.message}
             />
 
             <TransactionTypes>
