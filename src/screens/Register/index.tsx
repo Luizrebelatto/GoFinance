@@ -88,6 +88,12 @@ export function Register(){
     }
 
     loadData();
+
+    // async function removeAll() {
+    //   await AsyncStorage.removeItem(dataKey);
+    // }
+
+    // removeAll();
   },[]);
 
   return(
