@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import uuid from 'react-native-uuid'
+import uuid from 'react-native-uuid';
+import { useNavigation, NavigationProp, ParamListBase } from '@react-navigation/native';
 
 import { Modal, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import { Button } from '../../components/Form/Button';
@@ -36,9 +37,9 @@ export function Register(){
     name: 'categoria',
   });
 
-  const { control, handleSubmit, formState: { errors } } = useForm({
-      resolver: yupResolver(schema)
-  });
+  const navigation: NavigationProp<ParamListBase> = useNavigation();
+
+  const { control, handleSubmit, reset, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
 
   function handleTransactionTypeSelect(type: 'up' | 'down'){
     setTransactionType(type);
@@ -78,26 +79,22 @@ export function Register(){
       ]
 
       await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted));
+
+
+      reset();
+      setTransactionType('');
+      setCategory({
+        key: 'category',
+        name: 'categoria',
+      });
+
+      navigation.navigate("Listagem");
+
     } catch (error) {
       console.log(error);
       Alert.alert("Não foi Possivel Salvar");
     }
   }
-
-  useEffect(() =>{
-    async function loadData(){
-      const data = await AsyncStorage.getItem(dataKey);
-      console.log(JSON.parse(data!));
-    }
-
-    loadData();
-
-    // async function removeAll() {
-    //   await AsyncStorage.removeItem(dataKey);
-    // }
-
-    // removeAll();
-  },[]);
 
   return(
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
